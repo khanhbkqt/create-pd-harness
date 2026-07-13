@@ -12,6 +12,19 @@ sdlc_phase: analysis
 
 # Software Requirements Specification: [Tên Feature]
 
+## Completeness Tracker
+<!-- Agent cập nhật tự động khi viết/sửa sections -->
+| Section | Status | Notes |
+|---|---|---|
+| 1. Giới thiệu | ⬜ todo | |
+| 2. Mô tả tổng quan | ⬜ todo | |
+| 3. Yêu cầu cụ thể | ⬜ todo | |
+| 4. Mô hình dữ liệu | ⬜ todo | |
+| 5. Đặc tả giao diện ngoài | ⬜ todo | |
+| 6. Traceability Matrix | ⬜ todo | |
+
+---
+
 _Dựa trên IEEE 830-1998, điều chỉnh cho quy trình SDLC hiện đại._
 
 ---

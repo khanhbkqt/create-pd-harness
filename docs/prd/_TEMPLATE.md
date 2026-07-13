@@ -12,6 +12,24 @@ sdlc_phase: requirements
 
 # PRD: [Tên Feature]
 
+## Completeness Tracker
+<!-- Agent cập nhật tự động khi viết/sửa sections -->
+| Section | Status | Notes |
+|---|---|---|
+| 1. Tóm tắt | ⬜ todo | |
+| 2. Vấn đề cần giải quyết | ⬜ todo | |
+| 3. User Personas & Nhu cầu | ⬜ todo | |
+| 4. Phạm vi | ⬜ todo | |
+| 5. Yêu cầu chức năng (MoSCoW) | ⬜ todo | |
+| 6. Metrics thành công | ⬜ todo | |
+| 7. Ràng buộc & Giả định | ⬜ todo | |
+| 8. Dependencies | ⬜ todo | |
+| 9. Timeline & Milestones | ⬜ todo | |
+| 10. Rủi ro & Biện pháp | ⬜ todo | |
+| 11. Lịch sử phê duyệt | ⬜ todo | |
+
+---
+
 ## 1. Tóm tắt
 
 _[2-3 câu mô tả feature, business value, và impact dự kiến.]_

@@ -104,6 +104,9 @@ superseded_by: [ADR-ID nếu có]
 4. LINKED_REQS bắt buộc - quyết định nào cũng liên quan tới requirement
 5. STATUS transitions: proposed → accepted | deprecated; accepted → superseded
 6. CẬP NHẬT AGENTS.md index khi có ADR mới
+7. ĐỒNG BỘ TRẠNG THÁI:
+   - Chạy `python scripts/pdt.py status --update`
+   - Chạy `python scripts/pdt.py log --add "Tạo quyết định thiết kế ADR-[NNN]" --artifact "Decisions"`
 
 ## CHUYỂN GIAO
 

@@ -20,15 +20,7 @@ flowchart LR
 
 ## CONTEXT AWARENESS
 
-TRƯỚC KHI bắt đầu, SCAN trạng thái:
-
-```
-## Trạng thái Pipeline
-- HOÀN THÀNH: [steps đã xong]
-- ĐANG LÀM: [step hiện tại]
-- TIẾP THEO: [steps tiếp]
-- BLOCKED: [nếu có]
-```
+TRƯỚC KHI bắt đầu, chạy `python scripts/pdt.py status` để kiểm tra trạng thái hiện tại.
 
 ## CHI TIẾT TỪNG STEP
 
@@ -67,9 +59,12 @@ TRƯỚC KHI bắt đầu, SCAN trạng thái:
 **Skill sử dụng**: [brainstorm/SKILL.md](../skills/brainstorm/SKILL.md) (Bước 4)
 
 **Hành động**:
-1. TẠO Feature Brief theo format trong skill
+1. TẠO Feature Brief theo format trong skill tại `docs/features/[feature-name]-brief.md`
 2. LIỆT KÊ câu hỏi mở (nếu còn)
 3. TRÌNH user review Feature Brief
+4. CẬP NHẬT TRẠNG THÁI:
+   - Chạy `python scripts/pdt.py status --update` để ghi nhận Feature Brief mới.
+   - Chạy `python scripts/pdt.py log --add "Tạo Feature Brief [feature-name]" --artifact "Feature Brief"`
 
 **Output**: `docs/features/[feature-name]-brief.md`
 
@@ -85,6 +80,9 @@ TRƯỚC KHI bắt đầu, SCAN trạng thái:
 1. TẠO PRD draft từ Feature Brief
 2. FORMAT requirements theo REQ-ID convention
 3. THÊM acceptance criteria cho mỗi requirement
+4. CẬP NHẬT TRẠNG THÁI:
+   - Chạy `python scripts/pdt.py status --update`
+   - Chạy `python scripts/pdt.py log --add "Draft PRD cho [feature-name]" --artifact "PRD"`
 
 **Output**: `docs/prd/[feature-name].md` (status: draft)
 
@@ -98,19 +96,23 @@ TRƯỚC KHI bắt đầu, SCAN trạng thái:
 1. TRÌNH PRD draft cho user
 2. HIGHLIGHT các decision points cần input
 3. GHI NHẬN feedback
+4. KHI USER APPROVED:
+   - Thay đổi `status: approved` trong frontmatter của PRD.
+   - Chạy `python scripts/pdt.py status --update`
+   - Chạy `python scripts/pdt.py log --add "Approved PRD cho [feature-name]" --artifact "PRD"`
 
-**Output**: PRD với status updated
+**Output**: PRD với status = approved
 
 **Transition conditions**:
-- User approve → PRD status = `approved` → chuyển sang **Design Cycle** workflow
+- User approve → chuyển sang **Design Cycle** workflow
 - User có feedback → quay lại Step 2 hoặc Step 4 tùy scope feedback
 
 ---
 
 ## QUY TẮC WORKFLOW
 
-1. MỖI step GHI RÕ trạng thái pipeline trước khi bắt đầu
-2. CHUYỂN step chỉ khi transition condition đáp ứng
+1. MỖI step GHI RÕ trạng thái dự án (sử dụng `pdt.py status`)
+2. CHUYỂN step linh hoạt, không block cứng nhưng cần thông báo nếu thiếu dependencies.
 3. CITATION: mỗi output trích nguồn từ step trước
-4. ITERATION: user feedback quay lại step phù hợp, không bắt đầu lại từ đầu
-5. ARTIFACTS: mỗi step tạo hoặc cập nhật file cụ thể trong repo
+4. LOGGING: Sử dụng `pdt.py log` cho mọi thay đổi quan trọng của tài liệu.
+5. UPDATE HUB: Luôn chạy `pdt.py status --update` để giữ docs/STATUS.md đồng bộ.

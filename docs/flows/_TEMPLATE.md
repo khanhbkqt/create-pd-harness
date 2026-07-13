@@ -9,6 +9,20 @@ linked_screens: []
 
 # [Tên Flow]
 
+## Completeness Tracker
+<!-- Agent cập nhật tự động khi viết/sửa sections -->
+| Section | Status | Notes |
+|---|---|---|
+| 1. Mô tả | ⬜ todo | |
+| 2. Actors | ⬜ todo | |
+| 3. Preconditions | ⬜ todo | |
+| 4. Happy Path | ⬜ todo | |
+| 5. Error Paths | ⬜ todo | |
+| 6. Postconditions | ⬜ todo | |
+| 7. Liên kết | ⬜ todo | |
+
+---
+
 ## Mô tả
 
 _[1-2 câu mô tả mục đích flow]_

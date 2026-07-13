@@ -18,6 +18,26 @@ Mọi chỉ dẫn viết dạng hành động tích cực. Thay "tránh giả đ
 ### 4. Citation-Enforced
 Mọi phát biểu kỹ thuật, business logic, requirement PHẢI kèm dẫn chứng. Format: `[Nguồn: tên_tài_liệu, section X]`. Nếu không tìm thấy dẫn chứng → ghi rõ "CHƯA CÓ DỮ LIỆU - cần xác nhận từ stakeholder".
 
+
+---
+
+## QUY TẮC CONTEXT-AWARENESS & TRACKING
+
+Trước khi thực hiện bất kỳ workflow hoặc task nào:
+
+1. **CHECK STATUS**: Chạy `python scripts/pdt.py status` để kiểm tra trạng thái hiện tại của toàn bộ artifacts.
+2. **CHECK PRIORITIES**: Chạy `python scripts/pdt.py priority` để xem các công việc tiếp theo có độ ưu tiên cao nhất.
+3. **CHECK SYNC**: Chạy `python scripts/pdt.py sync` để đảm bảo không có sync issues/stale dependencies nào đang tồn tại. Nếu có, kích hoạt [Sync Check](.agents/workflows/sync-check.md) workflow.
+4. **STATE** rõ ràng trạng thái dự án trong output:
+   ```markdown
+   ### Trạng thái Artifacts (Từ STATUS.md)
+   | Artifact | Status | Completeness | Dependencies |
+   |---|---|---|---|
+   | [Tên] | [Status] | [Done/Total] | [Met/Unmet] |
+   ```
+5. **LOG ACTION**: Sau khi hoàn thành tạo/sửa bất kỳ artifact nào, chạy `python scripts/pdt.py log --add "[Message]" --artifact [Tên]` để ghi lại hoạt động.
+6. **UPDATE STATUS HUB**: Chạy `python scripts/pdt.py status --update` để đồng bộ trạng thái vào `docs/STATUS.md`.
+
 ---
 
 ## PERSONAS
@@ -42,6 +62,7 @@ EVALUATE context hiện tại trước khi chọn workflow. ĐỌC trạng thái
 | Feature Intake | Nhận yêu cầu → Brainstorm → Feature Brief → PRD Draft | [feature-intake.md](.agents/workflows/feature-intake.md) |
 | Design Cycle | PRD → UserFlow → Mockup → TDD → SRS → Decisions | [design-cycle.md](.agents/workflows/design-cycle.md) |
 | Review Gate | Kiểm tra completeness, traceability, consistency | [review-gate.md](.agents/workflows/review-gate.md) |
+| Sync Check | Đồng bộ và cập nhật khi có artifact thay đổi | [sync-check.md](.agents/workflows/sync-check.md) |
 | Handoff Package | Đóng gói artifacts → Implementation Plan → Handoff | [handoff-package.md](.agents/workflows/handoff-package.md) |
 
 ---
@@ -84,24 +105,3 @@ Mockup ReactJS nằm tại `mockups/`. Đây là giao diện final cho productio
 - **Stack**: React + TypeScript + Vite + Vanilla CSS (CSS Custom Properties)
 - **UI Standard**: Tuân thủ [taste-skill v2](taste-skill/skills/taste-skill/SKILL.md)
 - **Chạy local**: `cd mockups && npm run dev`
-
----
-
-## QUY TẮC CONTEXT-AWARENESS
-
-Khi viết Implementation Plan hoặc thực hiện bất kỳ workflow nào:
-
-1. **SCAN** trạng thái hiện tại: đọc tất cả files trong `docs/`, `mockups/src/`, `handoff/`
-2. **IDENTIFY** vị trí trong workflow pipeline (Feature Intake → Design Cycle → Review Gate → Handoff)
-3. **STATE** rõ ràng trong output:
-   ```
-   ## Trạng thái Pipeline
-   - HOÀN THÀNH: [liệt kê steps/docs đã xong]
-   - ĐANG LÀM: [step hiện tại]
-   - TIẾP THEO: [steps sắp tới]
-   - BLOCKED: [điều kiện chưa đáp ứng, nếu có]
-   ```
-4. **LINK** tới các artifacts liên quan bằng đường dẫn tương đối
-5. **IMPACTS**: Tác động của quyết định thiết kế đối với các modules khác
-   - Ảnh hưởng đến [TÊN MODULE]?
-   - Công việc cần triển khai tiếp theo?

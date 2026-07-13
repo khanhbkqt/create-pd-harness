@@ -7,7 +7,7 @@ description: Đóng gói handoff package sẵn sàng cho implementation team. Ch
 
 ## KÍCH HOẠT
 
-Khi tất cả artifacts đã qua Review Gate (`status: approved`).
+Khi tất cả artifacts đã qua Review Gate (`status: approved` hoặc user chấp nhận risk).
 
 ## PERSONA ACTIVE: `Spec_Steward` + `Product_Strategist`
 
@@ -17,32 +17,23 @@ Spec_Steward verify completeness. Product_Strategist prioritize implementation o
 
 ### Bước 1: Artifact Verification
 
-SCAN toàn bộ repo và VERIFY checklist:
+Chạy `python scripts/pdt.py status` để kiểm tra trạng thái và in checklist:
 
 ```markdown
-## Artifact Checklist
-- [ ] Vision: docs/vision/VISION.md (status: approved)
-- [ ] PRD: docs/prd/[feature].md (status: approved)
-- [ ] SRS: docs/srs/[feature].md (status: approved)
-- [ ] TDD: docs/tdd/[feature].md (status: approved)
-- [ ] Flows: docs/flows/[flows].md (status: approved)
-- [ ] Decisions: docs/decisions/[adrs].md (status: accepted)
-- [ ] Mockups: mockups/src/pages/[pages].tsx (functional, pre-flight passed)
-- [ ] Glossary: docs/GLOSSARY.md (up to date)
+## Artifact Checklist (Đọc từ STATUS.md)
+[Chèn phần nội dung tương ứng từ STATUS.md]
 ```
 
-GHI RÕ status từng artifact. Nếu bất kỳ item nào thiếu hoặc chưa approved → BLOCK handoff và liệt kê gaps.
+GHI RÕ status từng artifact.
 
 ### Bước 2: Consistency Check
 
-VERIFY cross-references:
-- PRD REQ-IDs → SRS FR/NFR-IDs (100% mapped?)
-- SRS FR-IDs → TDD Components (100% covered?)
-- ADR decisions → TDD architecture (consistent?)
-- Flows → Mockup screens (all screens have mockup?)
-- Glossary → All docs (all terms defined?)
-
-GHI RÕ inconsistencies nếu phát hiện.
+BẮT BUỘC chạy check:
+```bash
+python scripts/pdt.py verify
+python scripts/pdt.py sync
+```
+Ghi nhận kết quả verify và sync vào handoff package. Ghi rõ inconsistencies hoặc warnings nếu phát hiện.
 
 ### Bước 3: Tạo Implementation Plan
 
@@ -174,10 +165,10 @@ TẠO `handoff/[feature-name]/QUICK_START.md`:
 
 ## QUY TẮC
 
-1. HANDOFF chỉ xảy ra khi TẤT CẢ artifacts đã approved
-2. IMPLEMENTATION PLAN bắt buộc có: task breakdown, dependency graph, acceptance criteria
-3. CONTEXT AWARENESS: ghi rõ trạng thái pipeline (HOÀN THÀNH / ĐANG LÀM / TIẾP THEO / BLOCKED)
-4. TRÍCH DẪN SRS FR-IDs cho mỗi task
-5. DEPENDENCY GRAPH bằng Mermaid
-6. QUICK START GUIDE cho onboarding nhanh
-7. VERIFY consistency giữa tất cả artifacts trước khi bundle
+1. **Gate Verification**: Chỉ tiến hành handoff khi Review Gate đạt status `PASSED` hoặc `PASSED WITH WARNINGS` (user đồng ý).
+2. **IMPLEMENTATION PLAN**: Bắt buộc có task breakdown, dependency graph (Mermaid), và acceptance criteria mapped với SRS.
+3. **STATUS AT HANDOFF**: Phải đính kèm bản sao của `docs/STATUS.md` vào thư mục `handoff/[feature-name]/STATUS.md`.
+4. **TRÍCH DẪN**: Ghi rõ mã FR-ID/NFR-ID cho mỗi task trong plan.
+5. **ĐỒNG BỘ & LOGGING**:
+   - Chạy `python scripts/pdt.py status --update` trước khi đóng gói.
+   - Chạy `python scripts/pdt.py log --add "Đóng gói Handoff cho [feature-name]" --artifact "Handoff"` sau khi hoàn thành.

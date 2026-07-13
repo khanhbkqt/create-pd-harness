@@ -7,7 +7,12 @@ description: Viết Technical Design Document. Architecture overview, component 
 
 ## KÍCH HOẠT
 
-Khi SRS đã approve và Decision Records liên quan đã ghi. VERIFY cả 2 tồn tại.
+Khi cần draft hoặc update TDD.
+
+## DEPENDENCY CHECK
+Trước khi thực hiện viết TDD:
+1. Chạy `python scripts/pdt.py status` để kiểm tra trạng thái SRS và Decisions.
+2. Nếu SRS chưa approved hoặc chưa có, đưa ra CẢNH BÁO cho user. Tiếp tục thiết kế nếu được yêu cầu nhưng ghi rõ các ASSUMPTION trong TDD.
 
 ## PERSONA ACTIVE: `Tech_Advisor` + `Spec_Steward`
 
@@ -179,6 +184,9 @@ VERIFY:
 4. PERFORMANCE BUDGET dựa trên NFR metrics cụ thể
 5. SECURITY section bắt buộc - không bỏ qua
 6. GHI "CHƯA CÓ DỮ LIỆU" khi baseline metrics chưa có
+7. ĐỒNG BỘ TRẠNG THÁI:
+   - Chạy `python scripts/pdt.py status --update`
+   - Chạy `python scripts/pdt.py log --add "Viết/Cập nhật TDD cho [feature-name]" --artifact "TDD"`
 
 ## CHUYỂN GIAO
 

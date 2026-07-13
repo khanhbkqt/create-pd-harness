@@ -103,3 +103,11 @@ dist-ssr
 # Temporary files
 tmp/
 temp/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local project runtime log
+docs/.activity_log.jsonl

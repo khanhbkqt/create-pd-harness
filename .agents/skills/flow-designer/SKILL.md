@@ -7,7 +7,12 @@ description: Thiết kế UserFlow và SystemFlow bằng Mermaid diagrams. Mỗi
 
 ## KÍCH HOẠT
 
-Khi PRD đã approve và cần visualize hành trình user hoặc tương tác hệ thống.
+Khi cần draft hoặc update UserFlow/SystemFlow.
+
+## DEPENDENCY CHECK
+Trước khi thực hiện thiết kế flow:
+1. Chạy `python scripts/pdt.py status` để kiểm tra trạng thái PRD.
+2. Nếu PRD chưa có hoặc chưa approved, đưa ra cảnh báo cho user, nhưng vẫn tiếp tục thiết kế nếu có yêu cầu.
 
 ## PERSONA ACTIVE: `UX_Architect` + `QA_Skeptic`
 
@@ -83,50 +88,13 @@ sequenceDiagram
 
 ### Bước 5: Document Flow
 
-TẠO file `docs/flows/[flow-name].md`:
+TẠO file `docs/flows/[flow-name].md` theo template `docs/flows/_TEMPLATE.md`.
 
-```markdown
+Sau khi ghi file, BẮT BUỘC thực hiện:
+- Chạy `python scripts/pdt.py status --update` để cập nhật trạng thái.
+- Chạy `python scripts/pdt.py log --add "Thiết kế flow [flow-name]" --artifact "Flows"`
+
 ---
-title: "[Tên flow]"
-type: userflow | systemflow | stateflow
-status: draft | review | approved
-created: YYYY-MM-DD
-linked_reqs: [REQ-IDs]
-linked_screens: [Mockup page names]
----
-
-# [Tên Flow]
-
-## Mô tả
-[1-2 câu mô tả mục đích flow]
-[Nguồn: PRD REQ-XXX, "trích nguyên văn requirement"]
-
-## Actors
-- [Actor 1]: [Vai trò]
-- [Actor 2]: [Vai trò]
-
-## Preconditions
-- [Điều kiện tiên quyết 1]
-- [Điều kiện tiên quyết 2]
-
-## Happy Path
-[Mermaid diagram]
-
-## Error Paths
-### Error Path 1: [Tên]
-[Mermaid diagram hoặc mô tả]
-
-### Error Path 2: [Tên]
-[Mermaid diagram hoặc mô tả]
-
-## Postconditions
-- [Kết quả khi hoàn thành]
-
-## Liên kết
-- PRD: [REQ-IDs]
-- Mockup screens: [Pages]
-- SRS: [FR-IDs]
-```
 
 ## QUY TẮC
 
@@ -137,6 +105,7 @@ linked_screens: [Mockup page names]
 5. LIÊN KẾT tới mockup screens tương ứng
 6. MERMAID syntax valid - test render trước khi commit
 7. QA_Skeptic PHẢI review và thêm edge cases
+8. ĐỒNG BỘ TRẠNG THÁI: Luôn chạy `pdt.py status --update` sau khi lưu file.
 
 ## CHUYỂN GIAO
 

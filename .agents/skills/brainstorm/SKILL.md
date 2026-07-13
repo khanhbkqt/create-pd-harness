@@ -11,6 +11,9 @@ Khi user đưa ra yêu cầu tính năng mới, ý tưởng, hoặc vấn đề 
 
 ## QUY TRÌNH
 
+### Trước khi bắt đầu
+- Chạy `python scripts/pdt.py status` để kiểm tra các feature briefs đã tồn tại.
+
 ### Bước 1: Tiếp nhận & Phân loại
 
 PARSE yêu cầu của user thành:
@@ -25,7 +28,7 @@ PARSE yêu cầu của user thành:
 **Product_Strategist** hỏi:
 - "Nhóm user nào hưởng lợi trực tiếp? Quy mô nhóm đó bao nhiêu?"
 - "Feature này tạo revenue trực tiếp, giữ chân user, hay giảm chi phí vận hành?"
-- "Nếu bỏ feature này, user sẽ chuyển sang giải pháp thay thế nào?"
+- "If bỏ feature này, user sẽ chuyển sang giải pháp thay thế nào?"
 
 **UX_Architect** hỏi:
 - "User hiện tại đang hoàn thành task này bằng cách nào? Bao nhiêu bước?"
@@ -59,53 +62,18 @@ SAU KHI user trả lời (hoặc sau khi phân tích đủ context), tổng hợ
 
 ### Bước 4: Output Feature Brief
 
-TẠO Feature Brief theo format:
+TẠO Feature Brief theo format tại `docs/features/[feature-name]-brief.md` (sử dụng template `docs/features/_TEMPLATE.md`).
 
-```markdown
+Sau khi ghi file, BẮT BUỘC thực hiện:
+- Chạy `python scripts/pdt.py status --update` để đồng bộ.
+- Chạy `python scripts/pdt.py log --add "Hoàn thành Feature Brief cho [feature-name]" --artifact "Feature Brief"`
+
 ---
-title: [Tên feature]
-status: draft
-created: [YYYY-MM-DD]
-author: brainstorm-session
-priority: [P0/P1/P2/P3]
-linked_docs: []
----
-
-# Feature Brief: [Tên feature]
-
-## Vấn đề
-[Mô tả vấn đề gốc. Citation-enforced: trích nguyên văn từ user request.]
-
-## Đối tượng
-[User personas bị ảnh hưởng. Quy mô.]
-
-## Giải pháp đề xuất
-[Mô tả giải pháp ở mức high-level.]
-
-## Giá trị mang lại
-[Business value cụ thể. Metrics đo lường.]
-
-## Phạm vi
-### Bao gồm
-- [Item 1]
-### Loại trừ
-- [Item 1]
-
-## Rủi ro & Giả định
-| # | Nội dung | Loại | Mức độ | Biện pháp |
-|---|---|---|---|---|
-| 1 | [Nội dung] | Rủi ro/Giả định | Cao/TB/Thấp | [Biện pháp] |
-
-## Câu hỏi mở
-- [ ] [Câu hỏi chưa được trả lời]
-
-## Bước tiếp theo
-→ Chuyển sang PRD Writer khi tất cả câu hỏi mở được giải quyết.
-```
 
 ## QUY TẮC
 
-1. TRÍCH NGUYÊN VĂN lời user vào dấu ngoặc kép làm dẫn chứng
-2. GHI RÕ "CHƯA CÓ DỮ LIỆU" khi thiếu thông tin, kèm câu hỏi cụ thể để thu thập
-3. PHÂN TÍCH từ ít nhất 3 góc nhìn persona trước khi kết luận
-4. MỖI kết luận kèm `[Nguồn: ...]`
+1. TRÍCH NGUYÊN VĂN lời user vào dấu ngoặc kép làm dẫn chứng.
+2. GHI RÕ "CHƯA CÓ DỮ LIỆU" khi thiếu thông tin.
+3. PHÂN TÍCH từ ít nhất 3 góc nhìn trước khi kết luận.
+4. MỖI kết luận kèm `[Nguồn: ...]`.
+5. ĐỒNG BỘ STATUS: Luôn chạy `pdt.py status --update` và `pdt.py log` sau khi sửa đổi brief.

@@ -7,7 +7,13 @@ description: Viết Software Requirements Specification theo IEEE 830 và SDLC. 
 
 ## KÍCH HOẠT
 
-Khi PRD đã được approve (`status: approved`). VERIFY PRD tồn tại và đã approved trước khi bắt đầu.
+Khi cần draft hoặc update SRS.
+
+## DEPENDENCY CHECK
+Trước khi thực hiện viết SRS:
+1. Chạy `python scripts/pdt.py status` để kiểm tra trạng thái PRD.
+2. Nếu PRD chưa approved (vẫn là `draft` hoặc `review`), đưa ra CẢNH BÁO cho user: "PRD chưa approved, việc viết SRS có thể phải sửa đổi sau."
+3. Nếu user yêu cầu tiếp tục, vẫn thực hiện viết SRS dựa trên các giả định hiện tại của PRD.
 
 ## PERSONA ACTIVE: `Spec_Steward` + `Tech_Advisor`
 
@@ -98,6 +104,11 @@ MỖI yêu cầu non-functional:
 - **Baseline hiện tại**: [Nếu có, hoặc "CHƯA CÓ DỮ LIỆU"]
 ```
 
+### Bước 5: Đăng ký & Cập nhật trạng thái
+Sau khi lưu file `docs/srs/[feature-name].md`:
+- Chạy `python scripts/pdt.py status --update` để đồng bộ tracker.
+- Chạy `python scripts/pdt.py log --add "Viết/Cập nhật SRS cho [feature-name]" --artifact "SRS"`
+
 ## FRONTMATTER
 
 ```yaml
@@ -127,6 +138,7 @@ sdlc_phase: analysis
 6. TRÍCH NGUYÊN VĂN PRD requirement cho mỗi truy ngược
 7. GHI "CHƯA CÓ DỮ LIỆU" khi metric chưa xác định
 8. CẬP NHẬT GLOSSARY khi xuất hiện thuật ngữ kỹ thuật mới
+9. ĐỒNG BỘ TRẠNG THÁI: Luôn chạy `pdt.py status --update` sau khi lưu file.
 
 ## CHUYỂN GIAO
 

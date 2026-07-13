@@ -12,6 +12,20 @@ sdlc_phase: design
 
 # Technical Design Document: [Tên Feature]
 
+## Completeness Tracker
+<!-- Agent cập nhật tự động khi viết/sửa sections -->
+| Section | Status | Notes |
+|---|---|---|
+| 1. Tổng quan kiến trúc | ⬜ todo | |
+| 2. Component Design | ⬜ todo | |
+| 3. Data Model | ⬜ todo | |
+| 4. API Design | ⬜ todo | |
+| 5. Security | ⬜ todo | |
+| 6. Performance | ⬜ todo | |
+| 7. Trade-off Analysis | ⬜ todo | |
+| 8. Monitoring & Observability | ⬜ todo | |
+| 9. Deployment | ⬜ todo | |
+
 ---
 
 ## 1. Tổng quan kiến trúc

@@ -13,6 +13,12 @@ Khi UserFlow đã được thiết kế và PRD sections liên quan đã approve
 
 Khắt khe về visual quality. Mỗi mockup là giao diện final cho production.
 
+## DEPENDENCY CHECK
+
+Trước khi bắt đầu code Mockup:
+1. Chạy `python scripts/pdt.py status` để kiểm tra trạng thái PRD và Flows.
+2. Nếu PRD hoặc Flows chưa approved, đưa ra cảnh báo cho user. Có thể thực hiện draft Mockups dựa trên các giả định hiện tại, nhưng cần chú ý nguy cơ bị stale/rework sau này.
+
 ## TIỀN ĐIỀU KIỆN
 
 1. ĐỌC taste-skill v2: `taste-skill/skills/taste-skill/SKILL.md` - tuân thủ hoàn toàn
@@ -181,6 +187,9 @@ Tóm tắt các check quan trọng nhất:
 5. RESPONSIVE mobile-first: design cho 375px trước, scale lên
 6. TOKEN-BASED: colors, spacing, typography qua CSS custom properties
 7. TRÍCH DẪN PRD requirement mà component đang implement: `{/* REQ-001: [mô tả] */}`
+8. ĐỒNG BỘ TRẠNG THÁI:
+   - Chạy `python scripts/pdt.py status --update`
+   - Chạy `python scripts/pdt.py log --add "Cập nhật Mockups: thêm/sửa component hoặc page" --artifact "Mockup"`
 
 ## CHUYỂN GIAO
 
