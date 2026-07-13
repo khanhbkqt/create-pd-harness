@@ -2,6 +2,28 @@
 
 > Repo template chuyên dụng cho pha Product Design. Brainstorm, thiết kế, làm tài liệu, mockup. Kết quả handoff sẵn sàng cho implementation team.
 
+## Khởi Tạo Dự Án Mới
+
+Bạn có thể dễ dàng khởi tạo một repo thiết kế mới dựa trên template này bằng lệnh `npx`:
+
+```bash
+# Nếu publish trên npm:
+npx create-product-design-harness my-project
+
+# Hoặc khởi tạo trực tiếp từ GitHub repository:
+npx github:khanhnguyen/repo-design my-project
+```
+
+Sau đó di chuyển vào thư mục dự án:
+```bash
+cd my-project
+```
+
+Tiếp theo, mở thư mục này trong **Antigravity IDE** (hoặc CLI) và gõ lệnh sau để bắt đầu định hình dự án với Agent:
+```
+/project-bootstrapping
+```
+
 ## Cấu trúc Repo
 
 ```

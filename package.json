@@ -1,0 +1,16 @@
+{
+  "name": "create-product-design-harness",
+  "version": "1.0.0",
+  "description": "Scaffold a new Product Design Harness template",
+  "bin": {
+    "create-product-design-harness": "bin/init.js"
+  },
+  "scripts": {},
+  "keywords": [
+    "product-design",
+    "harness",
+    "template"
+  ],
+  "author": "",
+  "license": "MIT"
+}
