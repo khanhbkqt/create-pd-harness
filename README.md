@@ -11,7 +11,7 @@ Bạn có thể dễ dàng khởi tạo một repo thiết kế mới dựa trê
 npx create-pd-harness my-project
 
 # Hoặc khởi tạo trực tiếp từ GitHub repository:
-npx github:khanhnguyen/repo-design my-project
+npx github:khanhbkqt/create-pd-harness my-project
 ```
 
 Sau đó di chuyển vào thư mục dự án:
