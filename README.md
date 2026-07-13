@@ -93,6 +93,8 @@ Gói này bao gồm:
 - **Implementation Plan**: Kế hoạch chi tiết từng bước (Step-by-step) để đội ngũ Dev hoặc Coding Agent bắt tay vào lập trình backend/tích hợp.
 
 > **💡 Lợi ích**: Với Handoff Package này, team Dev (hoặc Coding Agent ở repo Implementation) sẽ không cần phải đoán mò hay liên tục hỏi lại Requirement. Mọi thứ đã được chốt cứng và minh chứng rõ ràng!
+> 
+> **🚀 Next Step**: Từ tài liệu handoff này, bạn có thể tiếp tục sử dụng **Antigravity IDE** với lệnh `/teamwork-preview` (phân chia sub-agents) hoặc `/goal` (tự hành dài hạn) để Agent tiến hành viết code backend, tích hợp hệ thống và hoàn thành dự án ngay lập tức!
 
 ## 📂 Cấu trúc Repo
 
