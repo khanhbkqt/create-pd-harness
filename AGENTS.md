@@ -18,6 +18,11 @@ Mọi chỉ dẫn viết dạng hành động tích cực. Thay "tránh giả đ
 ### 4. Citation-Enforced
 Mọi phát biểu kỹ thuật, business logic, requirement PHẢI kèm dẫn chứng. Format: `[Nguồn: tên_tài_liệu, section X]`. Nếu không tìm thấy dẫn chứng → ghi rõ "CHƯA CÓ DỮ LIỆU - cần xác nhận từ stakeholder".
 
+### 5. Sub-Agent Orchestration
+Nếu environment làm việc có hỗ trợ tính năng sub-agents, BẮT BUỘC ưu tiên sử dụng mô hình orchestrator: phân rã công việc lớn và điều phối các sub-agents đóng vai các Persona khác nhau để xử lý các tác vụ một cách độc lập và song song.
+
+### 6. Human-In-The-Loop (HITL)
+Tại các điểm nút quan trọng (Gate Reviews, Handoff, Transition giữa các phase), Agent KHÔNG ĐƯỢC tự ý vượt qua (Proceed) mà BẮT BUỘC phải dừng lại, báo cáo kết quả và đợi Explicit Approval từ người dùng/stakeholder.
 
 ---
 
@@ -50,6 +55,7 @@ Trước khi thực hiện bất kỳ workflow hoặc task nào:
 | `Spec_Steward` | PRD, SRS theo SDLC, traceability | "Mỗi requirement truy ngược được tới nguồn. Mỗi section hoàn chỉnh." |
 | `Tech_Advisor` | Feasibility, system constraints, trade-offs | "Scalability tới 10x? Latency budget? Security boundary?" |
 | `QA_Skeptic` | Edge cases, test scenarios, acceptance criteria | "Nếu network timeout giữa chừng? Nếu user nhập 10,000 ký tự? Nếu concurrent 1000 requests?" |
+| `Data_Analyst` | Phân tích dữ liệu, tracking events, telemetry | "Chúng ta đo lường thành công của feature này bằng events gì trên Mixpanel?" |
 
 ---
 
@@ -59,8 +65,9 @@ EVALUATE context hiện tại trước khi chọn workflow. ĐỌC trạng thái
 
 | Workflow | Mô tả | File |
 |---|---|---|
+| Project Bootstrapping | Nhận ý tưởng lớn → Socratic Challenge → Product Vision → Feature Roadmap | [project-bootstrapping.md](.agents/workflows/project-bootstrapping.md) |
 | Feature Intake | Nhận yêu cầu → Brainstorm → Feature Brief → PRD Draft | [feature-intake.md](.agents/workflows/feature-intake.md) |
-| Design Cycle | PRD → UserFlow → Mockup → TDD → SRS → Decisions | [design-cycle.md](.agents/workflows/design-cycle.md) |
+| Design Cycle | PRD → Flow → Wireframe → Mockup → Usability Test → TDD/SRS → Gate | [design-cycle.md](.agents/workflows/design-cycle.md) |
 | Review Gate | Kiểm tra completeness, traceability, consistency | [review-gate.md](.agents/workflows/review-gate.md) |
 | Sync Check | Đồng bộ và cập nhật khi có artifact thay đổi | [sync-check.md](.agents/workflows/sync-check.md) |
 | Handoff Package | Đóng gói artifacts → Implementation Plan → Handoff | [handoff-package.md](.agents/workflows/handoff-package.md) |
@@ -71,10 +78,14 @@ EVALUATE context hiện tại trước khi chọn workflow. ĐỌC trạng thái
 
 | Skill | Mục đích | File |
 |---|---|---|
+| Project Bootstrapping | Phân tích và hoàn thiện tầm nhìn dự án (VISION) | [SKILL.md](.agents/skills/project-bootstrapping/SKILL.md) |
+| Competitor Analysis | Phân tích, benchmarking đối thủ cạnh tranh | [SKILL.md](.agents/skills/competitor-analysis/SKILL.md) |
 | Brainstorm | Socratic method, challenge assumptions, multi-persona analysis | [SKILL.md](.agents/skills/brainstorm/SKILL.md) |
 | PRD Writer | Viết PRD theo SDLC, citation-enforced | [SKILL.md](.agents/skills/prd-writer/SKILL.md) |
 | SRS Writer | Viết SRS (IEEE 830), traceability matrix | [SKILL.md](.agents/skills/srs-writer/SKILL.md) |
+| Visual Wireframing | Phác thảo Lo-fi wireframe chốt bố cục | [SKILL.md](.agents/skills/visual-wireframing/SKILL.md) |
 | Mockup Designer | ReactJS Atomic Design, taste-skill v2 | [SKILL.md](.agents/skills/mockup-designer/SKILL.md) |
+| Usability Testing | Chạy thử nghiệm trải nghiệm UX trên Mockup | [SKILL.md](.agents/skills/usability-testing/SKILL.md) |
 | Decision Logger | Architecture Decision Records | [SKILL.md](.agents/skills/decision-logger/SKILL.md) |
 | Flow Designer | UserFlow/SystemFlow bằng Mermaid | [SKILL.md](.agents/skills/flow-designer/SKILL.md) |
 | TDD Writer | Technical Design Document | [SKILL.md](.agents/skills/tdd-writer/SKILL.md) |
@@ -93,6 +104,7 @@ EVALUATE context hiện tại trước khi chọn workflow. ĐỌC trạng thái
 | Decisions | `docs/decisions/[NNN]-[title].md` | [_TEMPLATE.md](docs/decisions/_TEMPLATE.md) |
 | Flows | `docs/flows/[flow-name].md` | [_TEMPLATE.md](docs/flows/_TEMPLATE.md) |
 | Glossary | `docs/GLOSSARY.md` | - |
+| Design System | `docs/DESIGN_SYSTEM.md` | [_TEMPLATE.md](docs/DESIGN_SYSTEM.md) |
 | Handoff | `handoff/[feature-name]/` | [_TEMPLATE.md](handoff/_TEMPLATE.md) |
 
 ---
@@ -101,6 +113,7 @@ EVALUATE context hiện tại trước khi chọn workflow. ĐỌC trạng thái
 
 Mockup ReactJS nằm tại `mockups/`. Đây là giao diện final cho production.
 
+- **Design Tokens**: Toàn bộ quy chuẩn về màu sắc, font, spacing, shadow PHẢI được định nghĩa tại `docs/DESIGN_SYSTEM.md` làm Single Source of Truth, và import vào file CSS gốc.
 - **Pattern**: Atomic Design (atoms → molecules → organisms → templates → pages)
 - **Stack**: React + TypeScript + Vite + Vanilla CSS (CSS Custom Properties)
 - **UI Standard**: Tuân thủ [taste-skill v2](taste-skill/skills/taste-skill/SKILL.md)

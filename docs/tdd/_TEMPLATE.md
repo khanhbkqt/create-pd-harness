@@ -23,7 +23,7 @@ sdlc_phase: design
 | 5. Security | ⬜ todo | |
 | 6. Performance | ⬜ todo | |
 | 7. Trade-off Analysis | ⬜ todo | |
-| 8. Monitoring & Observability | ⬜ todo | |
+| 8. Monitoring & Analytics | ⬜ todo | |
 | 9. Deployment | ⬜ todo | |
 
 ---
@@ -207,7 +207,7 @@ _[Horizontal/vertical scaling strategy. Bottleneck analysis.]_
 
 ---
 
-## 8. Monitoring & Observability
+## 8. Monitoring & Analytics
 
 ### 8.1 Metrics
 | Metric | Type | Alert Threshold | Dashboard |
@@ -223,6 +223,15 @@ _[Horizontal/vertical scaling strategy. Bottleneck analysis.]_
 | Condition | Severity | Channel | Runbook |
 |---|---|---|---|
 | _[Condition]_ | P1/P2/P3 | _[Slack/PagerDuty]_ | _[Link]_ |
+
+### 8.4 Analytics Integration (Telemetry)
+_Mapping từ PRD Section 6.2 (Telemetry Plan) sang implementation._
+- **SDK/Tool sử dụng**: _[Mixpanel/Amplitude/Google Analytics...]_
+- **Implementation Strategy**: _[Ví dụ: Bắn event ở frontend hay backend? Sử dụng queue để tránh block request?]_
+
+| Event Name | Mapping Component/Endpoint | Ghi chú kỹ thuật |
+|---|---|---|
+| `button_clicked` | `Frontend/ComponentA.tsx` | Đảm bảo truyền đủ context props |
 
 ---
 

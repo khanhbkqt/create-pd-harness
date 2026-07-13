@@ -21,7 +21,7 @@ sdlc_phase: requirements
 | 3. User Personas & Nhu cầu | ⬜ todo | |
 | 4. Phạm vi | ⬜ todo | |
 | 5. Yêu cầu chức năng (MoSCoW) | ⬜ todo | |
-| 6. Metrics thành công | ⬜ todo | |
+| 6. Metrics thành công & Telemetry | ⬜ todo | |
 | 7. Ràng buộc & Giả định | ⬜ todo | |
 | 8. Dependencies | ⬜ todo | |
 | 9. Timeline & Milestones | ⬜ todo | |
@@ -99,12 +99,19 @@ _[Format tương tự]_
 #### REQ-005: [Tên requirement]
 - **Lý do delay**: _[Giải thích]_
 
-## 6. Metrics thành công
+## 6. Metrics thành công & Telemetry
 
+### 6.1 Metrics thành công
 | Metric | Mô tả | Target | Cách đo | Timeline |
 |---|---|---|---|---|
 | _[Metric 1]_ | _[Mô tả]_ | _[Target]_ | _[Tool/method]_ | _[Khi nào đo]_ |
 | _[Metric 2]_ | _[Mô tả]_ | _[Target]_ | _[Tool/method]_ | _[Khi nào đo]_ |
+
+### 6.2 Telemetry & Tracking Plan
+Định nghĩa các event cần track (Mixpanel, Amplitude, GA4,...) để đo lường thành công.
+| Event Name | Trigger Condition | Properties (JSON) | Phân tích gì? |
+|---|---|---|---|
+| `button_clicked` | Khi user click nút X | `{ "location": "header" }` | Conversion rate của nút X |
 
 ## 7. Ràng buộc & Giả định
 
@@ -141,6 +148,10 @@ _[Format tương tự]_
 | 1 | _[Rủi ro]_ | Cao/TB/Thấp | Cao/TB/Thấp | _[Biện pháp]_ | _[Ai]_ |
 
 ## 11. Lịch sử phê duyệt
+
+> [!IMPORTANT]
+> **Human Approval Required**: ⬜ Chưa duyệt | ✅ Đã duyệt
+> _Agent không được tự ý đổi status sang `approved` nếu chưa có explicit confirmation từ stakeholder._
 
 | Ngày | Người | Hành động | Ghi chú |
 |---|---|---|---|

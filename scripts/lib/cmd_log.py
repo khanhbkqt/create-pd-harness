@@ -14,6 +14,10 @@ Usage:
 import json
 from datetime import datetime
 from pathlib import Path
+try:
+    import fcntl
+except ImportError:
+    fcntl = None
 
 from .config import LOG_FILE
 
@@ -54,7 +58,14 @@ def write_log_entry(message: str, artifact: str = "", action: str = "manual"):
     # Append to JSONL
     LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(LOG_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        if fcntl:
+            fcntl.flock(f, fcntl.LOCK_EX)
+        try:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+            f.flush()
+        finally:
+            if fcntl:
+                fcntl.flock(f, fcntl.LOCK_UN)
 
     return entry
 

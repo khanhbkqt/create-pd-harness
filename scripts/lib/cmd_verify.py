@@ -173,6 +173,23 @@ def check_consistency(results: dict) -> dict:
     """Check 4: Cross-document consistency."""
     issues = []
 
+    # Check: Feature Brief -> PRD link
+    for brief in results.get("Feature Brief", []):
+        brief_file = Path(brief["file"]).name
+        has_prd = False
+        for prd in results.get("PRD", []):
+            fm = prd.get("frontmatter", {})
+            source = str(fm.get("source", ""))
+            if brief_file in source or brief_file.replace("-brief", "") in str(prd["file"]):
+                has_prd = True
+                break
+        if not has_prd:
+            issues.append({
+                "severity": "SOFT",
+                "artifact": f"Feature Brief → PRD",
+                "issue": f"Feature Brief '{brief_file}' has no corresponding PRD linked",
+            })
+
     # Check: Flows reference screens that exist in Mockup
     flow_screens = set()
     for flow in results.get("Flows", []):

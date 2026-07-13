@@ -9,6 +9,10 @@ Usage:
 
 import json
 from datetime import datetime
+try:
+    import fcntl
+except ImportError:
+    fcntl = None
 
 from .config import ARTIFACT_DEPS, DOCS_DIR
 from .frontmatter import scan_all_artifacts
@@ -205,7 +209,17 @@ def cmd_status(args: list[str]):
     if "--update" in args:
         content = generate_status_md(results, dep_status)
         status_path = DOCS_DIR / "STATUS.md"
-        status_path.write_text(content, encoding="utf-8")
+        
+        with open(status_path, "w", encoding="utf-8") as f:
+            if fcntl:
+                fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.write(content)
+                f.flush()
+            finally:
+                if fcntl:
+                    fcntl.flock(f, fcntl.LOCK_UN)
+                    
         print(f"✅ Updated {status_path}")
         print()
 

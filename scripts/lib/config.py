@@ -55,6 +55,15 @@ VALID_STATUSES = ["draft", "review", "approved", "superseded"]
 
 # --- Completeness: required sections per doc type ---
 REQUIRED_SECTIONS = {
+    "Vision": [
+        "Tầm nhìn sản phẩm", "North Star Metric", "Đối tượng mục tiêu",
+        "Vấn đề cốt lõi", "Giải pháp đề xuất", "Nguyên tắc thiết kế sản phẩm",
+        "Phạm vi MVP", "Thị trường & Đối thủ", "Rủi ro chiến lược"
+    ],
+    "Feature Brief": [
+        "Vấn đề", "Đối tượng", "Giải pháp đề xuất",
+        "Giá trị mang lại", "Phạm vi", "Rủi ro & Giả định", "Câu hỏi mở"
+    ],
     "PRD": [
         "Tóm tắt", "Vấn đề cần giải quyết", "User Personas",
         "Phạm vi", "Yêu cầu chức năng", "Metrics thành công",

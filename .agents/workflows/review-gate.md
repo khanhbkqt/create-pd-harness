@@ -41,9 +41,11 @@ flowchart TD
     C -->|Có| D["BLOCKED: Phải sửa chữa"]
     C -->|Không| E{"Có SOFT WARNINGS?"}
     E -->|Có| F["CẢNH BÁO: Trình user duyệt rủi ro"]
-    E -->|Không| G["GATE PASSED: Sẵn sàng handoff"]
-    F -->|User duyệt| G
-    F -->|User từ chối| D
+    E -->|Không| G["GATE PASSED: Chờ duyệt"]
+    G --> H["HUMAN APPROVAL (HITL)"]
+    F --> H
+    H -->|Đồng ý| I["Chuyển sang Handoff"]
+    H -->|Từ chối| D
 ```
 
 ---
@@ -67,7 +69,8 @@ Chạy review gate xong, agent xuất ra report có cấu trúc sau:
 
 ### 3. Kết luận
 - **Trạng thái**: [PASSED / FAILED / PASSED WITH WARNINGS]
-- **Hành động tiếp theo**: [Handoff Package / Quay lại Step X để sửa lỗi / Chờ user confirm rủi ro]
+- **Human Approval (HITL)**: BẮT BUỘC DỪNG LẠI và hỏi người dùng: "Bạn có đồng ý Proceed để đóng gói Handoff không?"
+- **Hành động tiếp theo**: [Đợi User Approval / Quay lại Step X để sửa lỗi]
 ```
 
 ---
