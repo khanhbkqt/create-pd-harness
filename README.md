@@ -8,7 +8,7 @@ Bạn có thể dễ dàng khởi tạo một repo thiết kế mới dựa trê
 
 ```bash
 # Nếu publish trên npm:
-npx create-product-design-harness my-project
+npx create-pd-harness my-project
 
 # Hoặc khởi tạo trực tiếp từ GitHub repository:
 npx github:khanhnguyen/repo-design my-project
