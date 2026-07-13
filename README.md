@@ -1,6 +1,25 @@
 # Product Design Harness Template
 
-> Repo template chuyên dụng cho pha Product Design. Brainstorm, thiết kế, làm tài liệu, mockup. Kết quả handoff sẵn sàng cho implementation team.
+> Bộ công cụ và khuôn mẫu chuyên dụng cho pha Product Design kết hợp với AI Agents. Đi từ Ý tưởng -> Brainstorm -> Tài liệu (PRD/SRS) -> Mockup -> Handoff Package sẵn sàng cho đội ngũ (hoặc Agent) lập trình.
+
+## 🤔 Tại sao cần Product Design Harness?
+
+### ⚠️ Lời nguyền của "Vibecoding" (Code theo cảm hứng)
+Khi làm việc với các AI Coding Agents, chúng ta thường có xu hướng đưa ra yêu cầu chung chung: *"Hãy code cho tôi app X"*. Cách tiếp cận **Vibecoding** này giúp thấy kết quả rất nhanh lúc đầu, nhưng nhanh chóng bộc lộ các "painpoints" (nỗi đau) chí mạng khi dự án lớn lên:
+- **Lạc trôi Requirement**: Yêu cầu thay đổi liên tục, AI bị nhiễu context do nhớ nhớ quên quên, dẫn đến code chồng chéo, chắp vá (spaghetti code).
+- **UI/UX thiếu nhất quán**: Giao diện phụ thuộc vào "cảm hứng" của AI tại từng thời điểm prompt. Không có Design System chuẩn mực, giao diện trông "phổ thông", chắp vá và thiếu chuyên nghiệp.
+- **Nợ Kỹ thuật (Technical Debt) khổng lồ**: Bỏ qua bước phân tích kiến trúc, dẫn tới khi scale lên hoặc thêm tính năng phức tạp thì codebase gãy vỡ, đập đi xây lại.
+- **Hallucination**: AI tự "bịa" ra business logic hoặc các tính năng không cần thiết mà không dựa trên bất kỳ nguồn tham chiếu nào.
+
+### 💡 Giải pháp: Nhanh mà Chính xác
+Để tận dụng tối đa sức mạnh của AI mà không rơi vào mớ hỗn độn, chúng ta cần tách bạch rõ ràng **Pha Thiết kế (Product Design)** và **Pha Lập trình (Implementation)**. 
+
+**Product Design Harness** cung cấp một môi trường (với các prompts, skills và workflow cấu hình sẵn) để ép AI làm việc có kỷ luật:
+1. **Tư duy Đa góc nhìn (Multi-Persona)**: Thay vì một "AI thợ gõ" chung chung, Agent trong repo này sẽ lần lượt đóng vai *Product Strategist* (thách thức ý tưởng), *UX Architect* (thiết kế luồng), *UI Engineer* (làm mockup), và *Spec Steward* (viết PRD/SRS).
+2. **Citation-Enforced (Dẫn chứng bắt buộc)**: Mọi tính năng, luồng đi, hay dòng code mockup đều phải có truy xuất ngược (traceability) về một tài liệu gốc (PRD, Flow). Khắc phục triệt để tình trạng AI tự biên tự diễn.
+3. **Đóng gói Handoff**: Output cuối cùng của repo này không phải là backend/database chắp vá, mà là **một bản thiết kế hoàn chỉnh nhất** (bao gồm Tài liệu Requirement, Mermaid Diagrams, và ReactJS Mockup tĩnh đã chạy thực tế). 
+
+Gói handoff này sẽ đóng vai trò là "Kinh thánh" (Single Source of Truth) để giao cho Implementation team (hoặc một Coding Agent khác) code ra sản phẩm cuối cùng một cách **nhanh chóng, tự tin và chính xác tuyệt đối**.
 
 ## Khởi Tạo Dự Án Mới
 
